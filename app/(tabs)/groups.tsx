@@ -1,14 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const IndexScreen = () => {
+const GroupsScreen = () => {
   return (
     <View>
-      <Text>Index Screen</Text>
+      <Text>Groups Screen</Text>
     </View>
   );
 };
 
-export default IndexScreen;
+export default GroupsScreen;
 
 const styles = StyleSheet.create({});

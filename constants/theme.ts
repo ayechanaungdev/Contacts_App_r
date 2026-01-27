@@ -34,9 +34,9 @@ export const Colors = {
   accent: "#A3B18A",
   accentLight: "#DAD7CD",
 
-  background: "#F8F9F6",
+  background: "#e8f6cd",
   surface: "#FFFFFF",
-  border: "#E5E7EB",
+  border: "#9fa1a3",
 
   textPrimary: "#1F2933",
   textSecondary: "#4B5563",

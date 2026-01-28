@@ -1,6 +1,7 @@
 import { Colors } from "@/constants/theme";
 import { convertBase64ToUri } from "@/hooks/utils/convertBase64";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -18,12 +19,16 @@ const IndexScreen = () => {
     { id: 3, name: "Toe Toe", profile: "", ph_no: "09877787765" },
     { id: 4, name: "Thu Thu", profile: "", ph_no: "09176652232" },
   ]);
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <TextInput placeholder="Search your contacts here ..." />
-        <TouchableOpacity style={styles.addBtn}>
+        <TouchableOpacity
+          style={styles.addBtn}
+          onPress={() => router.push("/user/add")}
+        >
           <Text style={styles.plusText}>+</Text>
         </TouchableOpacity>
       </View>

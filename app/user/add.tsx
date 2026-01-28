@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -13,6 +14,28 @@ const AddScreen = () => {
   const [name, setName] = useState("");
   const [ph_no, setPhNo] = useState("");
   const [profile, setProfile] = useState<string | null>(null);
+  const [error, setError] = useState("");
+
+  const router = useRouter();
+
+  // add contact handler
+  const handleAddContact = () => {
+    if (!name || !ph_no) {
+      setError("Name and phone number are required");
+      return;
+    }
+
+    const contactData = {
+      name,
+      ph_no,
+      ...(profile && { profile: profile }), // Only include profile if image exists
+    };
+
+    // just collect and log the input data
+    console.log("Contact data", contactData);
+
+    router.back();
+  };
 
   // image picker
   const pickImage = async () => {
@@ -65,17 +88,20 @@ const AddScreen = () => {
           keyboardType="phone-pad"
         />
       </View>
+
+      {error && <Text style={styles.errorText}>{error}</Text>}
+
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, styles.cancelButton]}
-          onPress={() => console.log("Cancel pressed")}
+          onPress={() => router.back()}
         >
           <Text style={styles.buttonText}>Cancel</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.saveButton]}
-          onPress={() => console.log("Save pressed")}
+          onPress={handleAddContact}
         >
           <Text style={styles.buttonText}>Add to Contact</Text>
         </TouchableOpacity>
@@ -154,5 +180,10 @@ const styles = StyleSheet.create({
   imagePlaceholder: {
     padding: 20,
     alignItems: "center",
+  },
+  errorText: {
+    color: "#f44336",
+    marginTop: 8,
+    textAlign: "center",
   },
 });
